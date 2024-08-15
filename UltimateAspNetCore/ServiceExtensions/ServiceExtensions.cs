@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using LoggerService;
 using Repository;
+using Service.Contracts;
 
 namespace UltimateAspNetCore.ServiceExtensions
 {
@@ -31,5 +32,8 @@ namespace UltimateAspNetCore.ServiceExtensions
 			services.AddScoped<IRepositoryManager, RepositoryManager>();
 		}
 
-	}
+        public static void ConfigureServiceManager(this IServiceCollection services) =>
+			services.AddScoped<IServiceManager, ServiceManager>();
+
+    }
 }
