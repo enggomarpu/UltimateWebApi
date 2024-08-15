@@ -13,9 +13,13 @@ namespace UltimateAspNetCore.ContextFactory
 				.AddJsonFile("appsettings.json")
 				.Build();
 		
+			// var builder = new DbContextOptionsBuilder<RepositoryContext>()
+			// 		.UseSqlServer(configuration.GetConnectionString("sqlConnection"),
+			// 		b => b.MigrationsAssembly("UltimateAspNetCore"));
+
 			var builder = new DbContextOptionsBuilder<RepositoryContext>()
-					.UseSqlServer(configuration.GetConnectionString("sqlConnection"),
-					b => b.MigrationsAssembly("UltimateAspNetCore"));
+					.UseSqlite(configuration.GetConnectionString("sqliteConnection"),
+					b => b.MigrationsAssembly("UltimateAspNetCore"));				
 
 			return new RepositoryContext(builder.Options);
 		}

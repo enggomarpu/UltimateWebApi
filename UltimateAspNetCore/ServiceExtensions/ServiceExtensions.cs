@@ -17,7 +17,8 @@ namespace UltimateAspNetCore.ServiceExtensions
 
 		public static void ConfigureIISIntegration(this IServiceCollection services)
 		{
-			services.Configure<IISOptions>(options => { 
+			services.Configure<IISOptions>(options =>
+			{
 			}
 			);
 		}
@@ -32,10 +33,22 @@ namespace UltimateAspNetCore.ServiceExtensions
 			services.AddScoped<IRepositoryManager, RepositoryManager>();
 		}
 
+		// public static void ConfigureSqlContext(this IServiceCollection services,
+		// 	IConfiguration configuration){
+		// 		services.AddDbContext<RepositoryContext>(opts =>
+		// 	opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
+		// 	}
+
+
 		public static void ConfigureSqlContext(this IServiceCollection services,
-			IConfiguration configuration) =>
-			services.AddDbContext<RepositoryContext>(opts =>
-			opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
+			IConfiguration configuration)
+		{
+			services.AddDbContext<RepositoryContext>(opts => opts.UseSqlite(configuration.GetConnectionString("sqliteConnection")));
+		}
+
+
+
+
 
 	}
 }
