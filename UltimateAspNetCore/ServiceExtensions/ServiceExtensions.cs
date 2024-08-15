@@ -2,6 +2,7 @@
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Repository;
+using Service.Contracts;
 
 namespace UltimateAspNetCore.ServiceExtensions
 {
@@ -45,6 +46,9 @@ namespace UltimateAspNetCore.ServiceExtensions
 		{
 			services.AddDbContext<RepositoryContext>(opts => opts.UseSqlite(configuration.GetConnectionString("sqliteConnection")));
 		}
+
+		public static void ConfigureServiceManager(this IServiceCollection services) =>
+			services.AddScoped<IServiceManager, ServiceManager>();
 
 
 

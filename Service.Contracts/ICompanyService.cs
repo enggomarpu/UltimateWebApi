@@ -1,9 +1,9 @@
 ﻿using Entities.Modals;
 
-namespace Contracts
+namespace Service.Contracts
 {
-	public interface ICompanyRepository
-	{
+    public interface ICompanyService
+    {
 		IEnumerable<Company> GetAllCompanies(bool trackChanges);
 	}
 }
