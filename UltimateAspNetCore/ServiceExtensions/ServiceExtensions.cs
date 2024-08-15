@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using LoggerService;
+using Microsoft.EntityFrameworkCore;
 using Repository;
 
 namespace UltimateAspNetCore.ServiceExtensions
@@ -30,6 +31,11 @@ namespace UltimateAspNetCore.ServiceExtensions
 		{
 			services.AddScoped<IRepositoryManager, RepositoryManager>();
 		}
+
+		public static void ConfigureSqlContext(this IServiceCollection services,
+			IConfiguration configuration) =>
+			services.AddDbContext<RepositoryContext>(opts =>
+			opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
 
 	}
 }
