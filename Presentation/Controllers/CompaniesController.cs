@@ -3,9 +3,8 @@ using Service.Contracts;
 
 namespace Presentation.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class CompaniesController : ControllerBase
+	
+	public class CompaniesController : BaseApiController
 	{
 		private readonly IServiceManager _service;
 
@@ -15,16 +14,17 @@ namespace Presentation.Controllers
 		}
 		[HttpGet]
 		public IActionResult GetCompanies(){
-			try
-			{
+
 				var companies = _service.CompanyService.GetAllCompanies(false);
 				return Ok(companies);
-			}
-			catch
-			{
-				return StatusCode(500, "Internal server error");
-			}
 			
+			
+		}
+		[HttpGet("{id:guid}")]
+		public IActionResult GetCompany(Guid id)
+		{
+			var company = _service.CompanyService.GetCompany(id);
+			return Ok(company);
 		}
 	}
 }

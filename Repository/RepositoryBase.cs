@@ -44,6 +44,11 @@ namespace Repository
 			return _repositoryContext.Set<T>().Where(expression);
 		}
 
+		//public T FindOne(Guid Gid)
+		//{	
+		//	return FindByCondition(c => c.Id.Equals(Gid), false);
+		//}
+
 		public void Update(T entity)
 		{
 			_repositoryContext.Set<T>().Update(entity);
